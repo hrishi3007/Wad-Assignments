@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data List</title>
+    <style>
+        /* CSS styles for the body */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* CSS styles for the heading */
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        /* CSS styles for the table */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CSS styles for table header */
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* CSS styles for table header cells */
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* CSS styles for table rows on hover */
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        /* CSS styles for the button container */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* CSS styles for the redirect button */
+        .redirect-button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* CSS styles for hover effect on the redirect button */
+        .redirect-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Heading -->
+    <h1>Registered Users</h1>
+
+    <!-- Table to display user data -->
+    <table>
+        <thead>
+            <tr>
+                <!-- Table header columns -->
+                <th>Sr. No.</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="userDataList"></tbody>
+    </table>
+
+    <script>
+        // JavaScript to load user data from localStorage and populate the table
+        window.onload = function() {
+            // Retrieve user data from localStorage or initialize an empty array
+            var userData = JSON.parse(localStorage.getItem("userList")) || [];
+            var dataList = document.getElementById("userDataList");
+
+            // Loop through each user data and create a table row for each user
+            userData.forEach(function(user, index) {
+                // Insert a new row into the table body
+                var row = dataList.insertRow();
+                // Insert cells into the row to display user data
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+
+                // Fill the cells with user data
+                cell1.textContent = index + 1; // Sr. No.
+                cell2.textContent = user.username; // Name
+                cell3.textContent = user.email; // Email
+            });
+        };
+    </script>
+
+    <!-- Button container -->
+    <div class="button-container">
+        <!-- Button to navigate back to index.html -->
+        <button class="redirect-button" onclick="window.location.href = 'index.html';">Go to Index</button>
+    </div>
+</body>
+</html>
